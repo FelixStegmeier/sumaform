@@ -35,24 +35,24 @@ ssh_config_proxy_containerized:
     - mode: 700
 
 # Note: In our registries we don't have released and not released versions at this point in time
-{% if grains.get('container_repository') %}
-  {% set container_repository = grains.get('container_repository') %}
+{% if grains.get('container_registry') %}
+  {% set container_registry = grains.get('container_registry') %}
   {% set container_tag = grains.get('container_tag') %}
 {% else %}
   {% if 'uyuni' in grains.get('product_version') %}
-    {% set container_repository = 'registry.opensuse.org/systemsmanagement/uyuni/master/containers' %}
+    {% set container_registry = 'registry.opensuse.org/systemsmanagement/uyuni/master/containers' %}
     # in Uyuni this would use latest tag
     {% set container_tag = '' %}
   {% elif '5.0-released' in grains.get('product_version') %}
-    {% set container_repository = 'registry.suse.de/suse/sle-15-sp6/update/products/manager50/containerfile' %}
+    {% set container_registry = 'registry.suse.de/suse/sle-15-sp6/update/products/manager50/containerfile' %}
     # in SUMA this would use most recent version as tag
     {% set container_tag = '' %}
   {% elif '5.1-released' in grains.get('product_version') %}
-    {% set container_repository = 'registry.suse.de/suse/sle-15-sp7/update/products/multilinuxmanager51/containerfile' %}
+    {% set container_registry = 'registry.suse.de/suse/sle-15-sp7/update/products/multilinuxmanager51/containerfile' %}
     # in SUMA this would use most recent version as tag
     {% set container_tag = '' %}
   {% else %} # Head or nightly versions
-    {% set container_repository = 'registry.suse.de/devel/galaxy/manager/head/containers' %}
+    {% set container_registry = 'registry.suse.de/devel/galaxy/manager/head/containers' %}
     {% set container_tag = 'latest' %}
   {% endif %}
 {% endif %}
@@ -62,7 +62,7 @@ config_proxy_containerized:
   file.managed:
     - name: /etc/uyuni/uyuni-tools.yaml
     - contents: |
-        registry: {{ container_repository }}
+        registry: {{ container_registry }}
         httpd:
           tag: {{ container_tag }}
         saltBroker:

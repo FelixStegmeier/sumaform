@@ -50,7 +50,7 @@ locals {
   runtimes                  = { for host_key in local.hosts :
     host_key => lookup(var.host_settings[host_key], "runtime", "podman") if var.host_settings[host_key] != null }
   container_repositories    = { for host_key in local.hosts :
-    host_key => lookup(var.host_settings[host_key], "container_repository", null) if var.host_settings[host_key] != null }
+    host_key => lookup(var.host_settings[host_key], "container_registry", null) if var.host_settings[host_key] != null }
   container_tags    = { for host_key in local.hosts :
     host_key => lookup(var.host_settings[host_key], "container_tag", null) if var.host_settings[host_key] != null }
   helm_chart_urls           = { for host_key in local.hosts :
@@ -134,7 +134,7 @@ module "server_containerized" {
   image                          = lookup(local.images, "server_containerized", "default")
   name                           = lookup(local.names, "server_containerized", "server")
   runtime                        = lookup(local.runtimes, "server_containerized", "podman")
-  container_repository           = lookup(local.container_repositories, "server_containerized", "")
+  container_registry             = lookup(local.container_repositories, "server_containerized", "")
   container_tag                  = lookup(local.container_tags, "server_containerized", "")
   auto_accept                    = false
   download_private_ssl_key       = false
@@ -211,7 +211,7 @@ module "proxy_containerized" {
   name                   = lookup(local.names, "proxy_containerized", "proxy")
 
   runtime                = lookup(local.runtimes, "proxy_containerized", "podman")
-  container_repository   = lookup(local.container_repositories, "proxy_containerized", "")
+  container_registry     = lookup(local.container_repositories, "proxy_containerized", "")
   container_tag          = lookup(local.container_tags, "proxy_containerized", "")
   helm_chart_url         = lookup(local.helm_chart_urls, "proxy_containerized", "")
   server_configuration   = { hostname = local.server_full_name,

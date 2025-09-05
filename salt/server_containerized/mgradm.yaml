@@ -10,8 +10,8 @@ scc:
 {% endif %}
 email: {{ grains.get("traceback_email") | default('galaxy-noise@suse.de', true) }}
 emailFrom: {{ grains.get("from_email") | default('galaxy-noise@suse.de', true) }}
-{%- if grains.get('container_repository') %}
-registry: {{ grains.get('container_repository') }}
+{%- if grains.get('container_registry') %}
+registry: {{ grains.get('container_registry') }}
 {% endif %}
 {%- if grains.get('container_image') %}
 image: {{ grains.get('container_image') }}

@@ -43,7 +43,7 @@ module "proxy_containerized" {
     server_password           = var.server_configuration["password"]
     auto_configure            = var.auto_configure
     container_runtime         = var.runtime
-    container_repository      = var.container_repository
+    container_registry        = var.container_registry
     container_tag             = var.container_tag
     helm_chart_url            = var.helm_chart_url # Not yet implemented in sumaform salt states
     mirror                    = var.base_configuration["mirror"]
@@ -65,7 +65,7 @@ output "configuration" {
     username             = var.server_configuration["username"]
     password             = var.server_configuration["password"]
     runtime              = var.runtime
-    container_repository = var.container_repository
+    container_registry   = var.container_registry
     auto_configure       = var.auto_configure
   }
 }
