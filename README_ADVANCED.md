@@ -66,7 +66,7 @@ module "server" {
 
 You can specify a base OS in most modules specifying an `image` variable.
 
-For some modules like `minion`, `image` is mandatory and Terraform will refuse to apply plans if it is missing. Please refer to `modules/<backend>/base/main.tf` for the exact list of supported OSs.
+For some modules like `minion`, `image` is mandatory and Terraform/openTofu will refuse to apply plans if it is missing. Please refer to `modules/<backend>/base/main.tf` for the exact list of supported OSs.
 
 For other modules like `server` there is a default selection if nothing is specified. Please note that not all OS combinations might be supported, refer to official documentation to select a compatible OS.
 
@@ -94,7 +94,7 @@ Changing the backend normally means destroying the current one (see "Working on 
 The following steps need to be performed:
 
 - Clean the current Terraform state
-  - Consider run `terraform destroy`
+  - Consider run `tofu destroy`
   - Remove the `terraform.tfstate` file
 - Adapt the `main.tf` file to the new provider specific properties
 - remove folder `.terraform`
@@ -590,11 +590,11 @@ module "slave" {
 }
 ```
 
-Please note that `iss_master` is set from `master`'s module output variable `hostname`, while `iss_slave` is simply hardcoded. This is needed for Terraform to resolve dependencies correctly, as dependency cycles are not permitted.
+Please note that `iss_master` is set from `master`'s module output variable `hostname`, while `iss_slave` is simply hardcoded. This is needed for openTofu to resolve dependencies correctly, as dependency cycles are not permitted.
 
 ## Working on multiple configuration sets (workspaces) locally
 
-Terraform supports working on multiple infrastructure resource groups with the same set of files through the concept of [workspaces](https://www.terraform.io/docs/state/workspaces.html). Unfortunately those are not supported for the default filesystem backend and do not really work well with different `main.tf` files, which is often needed in sumaform.
+openTofu supports working on multiple infrastructure resource groups with the same set of files through the concept of [workspaces](https://opentofu.org/docs/language/state/workspaces/). Unfortunately those are not supported for the default filesystem backend and do not really work well with different `main.tf` files, which is often needed in sumaform.
 
 As a workaround, you can create a `local_workspaces` directory with a subdirectory per workspace, each containing main.tf and terraform.tfstate files, then use symlinks to the sumaform root:
 

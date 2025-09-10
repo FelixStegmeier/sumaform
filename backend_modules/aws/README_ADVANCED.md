@@ -104,13 +104,13 @@ We have two options to perform this task: using AWS console or with terraform re
     ```
 
 2. In case you want to destroy/delete the mirror instance but keep the snapshot
-    1. remove snapshot resource from terraform state: `terraform state rm aws_ebs_snapshot.mirror_data_snapshot`
-    2. If you now run `terraform destroy` the snapshot will be preserved.
-    However, running `terraform apply` again will create a new snapshot.
+    1. remove snapshot resource from terraform state: `tofu state rm aws_ebs_snapshot.mirror_data_snapshot`
+    2. If you now run `tofu destroy` the snapshot will be preserved.
+    However, running `tofu apply` again will create a new snapshot.
 
 #### Force the re-creation of a data disk snapshot
 
-To remove the older snapshot and create a new one, taint its resource via `terraform taint aws_ebs_snapshot.mirror_data_snapshot`.
+To remove the older snapshot and create a new one, taint its resource via `tofu taint aws_ebs_snapshot.mirror_data_snapshot`.
 
 ## Re-use of existing network infrastructure resources
 

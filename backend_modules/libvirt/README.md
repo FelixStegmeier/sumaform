@@ -24,8 +24,8 @@
   - or you specify a different name by uncommenting the `network_name` variable declaration in the `base` module
 - decide the set of virtual machines you want to run. Delete any `module` section relative to VMs you don't want to use and feel free to copy and paste to add more
 - Create a symbolic link to the `libvirt` backend module directory inside the `modules` directory: `cd modules && ln -sfn ../backend_modules/libvirt backend`
-- run `terraform init` to make sure Terraform has detected all modules
-- run `terraform apply` to actually have the VMs set up!
+- run `tofu init` to make sure Terraform has detected all modules
+- run `tofu apply` to actually have the VMs set up!
 
 ## libvirt backend specific variables
 
@@ -150,7 +150,7 @@ especially in the case the network is not working and you need to debug it, or i
 
 ### Accessing VMs through bastion host
 
-When deployed VMs are behind NAT and not directly accessible from the machine terraform is running on, it is required for libvirt connection provider to specify a jump host. To do this add
+When deployed VMs are behind NAT and not directly accessible from the machine openTofu is running on, it is required for libvirt connection provider to specify a jump host. To do this add
 bastion configuration options to the libvirt `provider_settings`:
 
 ```hcl-terraform

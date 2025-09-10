@@ -125,7 +125,7 @@ resource "aws_instance" "instance" {
 
   # WORKAROUND
   # SUSE internal openbare AWS accounts add special tags to identify the instance owner ("PrincipalId", "Owner").
-  # After the first `apply`, terraform removes those tags. The following block avoids this behavior.
+  # After the first `apply`, openTofu removes those tags. The following block avoids this behavior.
   # The correct way to do it would be by ignoring those tags, which is not supported yet by the AWS terraform provider
   # See github:terraform-providers/terraform-provider-aws#10689
   lifecycle {

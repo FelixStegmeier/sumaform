@@ -3,7 +3,7 @@
 
 require 'json'
 
-output = JSON.parse(`terraform output -json`)
+output = JSON.parse(`tofu output -json`)
 
 bastion_public_name = output["bastion_public_name"]["value"]
 

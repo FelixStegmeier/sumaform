@@ -2,7 +2,7 @@
 // To do so, copy this template to main.tf, fill in your SCC and AWS
 // credentials and the regions.
 
-// Create a mirror instance using 'terraform apply', and if successful,
+// Create a mirror instance using 'tofu apply', and if successful,
 // follow the instruction in backend_modules/aws/README_ADVANCED.md
 
 // If you want to base the data disk on an existing snapshot, either set
@@ -81,7 +81,7 @@ module "mirror" {
 //  }
 //}
 //
-// Attention: if you run terraform destroy, you will remove the snapshot.
+// Attention: if you run tofu destroy, you will remove the snapshot.
 // One should remove snapshot state first. For more information see backend_modules/aws/README_ADVANCED.md
 //resource "aws_ebs_snapshot" "mirror_data_snapshot" {
 //  volume_id = data.aws_ebs_volume.data_disk_id.id

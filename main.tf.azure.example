@@ -15,7 +15,7 @@ module "base" {
   cc_username = "*"
   cc_password = "*"
 
-  name_prefix =  local.name_prefix 
+  name_prefix =  local.name_prefix
    // if you use name_prefix, make sure to update the server_configuration for clients/minions below
   product_version   = "uyuni-release"
   provider_settings = {
@@ -37,11 +37,11 @@ module "base" {
 // ================= END MIRROR =================
 
 module "mirror" {
-  
+
   source = "./modules/mirror"
 
   base_configuration = module.base.configuration
-  
+
   volume_provider_settings = {
 # uncomment the following line if you want to reuse an data disk snapshot
 #  volume_snapshot = data.azurerm_snapshot.repodisk-snapshot
@@ -59,13 +59,13 @@ locals{
 
 
 module "server" {
-  
+
   source             = "./modules/server"
   base_configuration = local.base_configuration
 
   name            = "server"
   image           = "suma41"
-  
+
 
   provider_settings = {
     public_instance = true
