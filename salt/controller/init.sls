@@ -9,7 +9,7 @@ ssh_private_key:
     - makedirs: True
     - user: root
     - group: root
-    - mode: 700
+    - mode: "0700"
 
 ssh_public_key:
   file.managed:
@@ -18,7 +18,7 @@ ssh_public_key:
     - makedirs: True
     - user: root
     - group: root
-    - mode: 700
+    - mode: "0700"
 
 authorized_keys_controller:
   file.append:
@@ -143,7 +143,7 @@ netrc_mode:
     - name: ~/.netrc
     - user: root
     - group: root
-    - mode: 600
+    - mode: "0600"
     - replace: False
     - require:
       - file: git_config
@@ -177,7 +177,7 @@ cucumber_run_script:
     - template: jinja
     - user: root
     - group: root
-    - mode: 755
+    - mode: "0755"
 
 testsuite_env_vars:
   file.managed:
@@ -186,7 +186,7 @@ testsuite_env_vars:
     - template: jinja
     - user: root
     - group: root
-    - mode: 755
+    - mode: "0755"
 
 extra_pkgs:
   pkg.installed:

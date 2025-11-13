@@ -40,12 +40,12 @@ fake_systemd_detect_virt:
   file.managed:
     - name: /usr/bin/systemd-detect-virt
     - source: salt://virthost/systemd-detect-virt
-    - mode: 655
+    - mode: "0655"
 
 fake_virt_what:
   file.managed:
     - name: /usr/sbin/virt-what
-    - mode: 655
+    - mode: "0655"
     - contents: "# Fake from sumaform to mock physical machine"
 
 ifcfg-eth0:
@@ -75,7 +75,7 @@ ifcfg-br0:
     {% else %}
     - skip_verify: True
     {% endif %}
-    - mode: 655
+    - mode: "0655"
     - makedirs: True
 
 ### adjustments for cloud init and the Salt bundle migration tests in the test suite ---
@@ -198,7 +198,7 @@ create-vm-cloudinit-disk-{{ os_type }}:
   cmd.run:
     - name: mkisofs -o /var/testsuite-data/cloudinit-disk-{{ os_type }}.iso -volid cidata -joliet -rock /var/testsuite-data/cloudinit
     - creates: /var/testsuite-data/cloudinit-disk-{{ os_type }}.iso
-    - requires:
+    - require:
       - pkg: mkisofs
       - file: /var/testsuite-data/cloudinit/network-config
       - file: /var/testsuite-data/cloudinit/user-data

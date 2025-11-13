@@ -8,7 +8,7 @@ ssh_private_key_proxy_containerized:
     - makedirs: True
     - user: root
     - group: root
-    - mode: 700
+    - mode: "0700"
 
 ssh_public_key_proxy_containerized:
   file.managed:
@@ -17,7 +17,7 @@ ssh_public_key_proxy_containerized:
     - makedirs: True
     - user: root
     - group: root
-    - mode: 700
+    - mode: "0700"
 
 authorized_keys_proxy_containerized:
   file.append:
@@ -32,7 +32,7 @@ ssh_config_proxy_containerized:
     - makedirs: True
     - user: root
     - group: root
-    - mode: 700
+    - mode: "0700"
 
 # Note: In our registries we don't have released and not released versions at this point in time
 {% if grains.get('container_repository') %}

@@ -14,7 +14,7 @@ ssh_private_key:
     - makedirs: True
     - user: root
     - group: root
-    - mode: 600
+    - mode: "0600"
 
 ssh_public_key:
   file.managed:
@@ -23,7 +23,7 @@ ssh_public_key:
     - makedirs: True
     - user: root
     - group: root
-    - mode: 600
+    - mode: "0600"
 
 {% if '11' in grains['osrelease'] %}
 
