@@ -1,0 +1,27 @@
+{% set tmp = "/tmp/rhn.conf" %}
+{% set source = "/etc/rhn/rhn.conf" %}
+{% set template = "/root/salt/server_containerized/rhn_conf.j2" %}
+
+get_rhn_conf:
+  cmd.run:
+    - name: |
+        mgrctl cp server:{{ source }} {{ tmp }}
+
+
+rhn_config_data:
+  file.blockreplace:
+    - name: {{ tmp }}
+    - marker_start: "### SALT START ###"
+    - marker_end: "### SALT END ###"
+    - append_if_not_found: True
+    - source: {{ template }}
+    - template: jinja
+    - require:
+      - cmd: get_rhn_conf
+
+write_to_rhn_conf:
+  cmd.run:
+    - name: |
+        mgrctl cp {{ tmp }} server:{{ source }}
+    - require:
+      - file: rhn_config_data

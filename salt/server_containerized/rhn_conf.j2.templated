@@ -1,0 +1,24 @@
+{%- if grains.get('skip_changelog_import') -%}
+package_import_skip_changelog = 1
+{%- endif -%}
+
+java.max_changelog_entries = 3
+
+java.salt_check_download_tokens = {{ grains.get('disable_download_tokens', false) }}
+
+{%- set mirror_hostname = grains.get('server_mounted_mirror') if grains.get('server_mounted_mirror') else grains.get('mirror') -%}
+{% if mirror_hostname %}
+server.susemanager.fromdir = /mirror
+{% elif salt["grains.get"]("smt") %}
+server.susemanager.mirror = {{ salt["grains.get"]("smt") }}
+{% endif %}
+
+prometheus_monitoring_enabled = {{ grains.get('monitored') | default(false, true) }}
+
+server.susemanager.forward_registration = {{ grains.get('forward_registration', false) }}
+
+hibernate.c3p0.unreturnedConnectionTimeout = {{ grains.get('c3p0_connection_timeout', 14400) }}
+
+hibernate.c3p0.debugUnreturnedConnectionStackTraces = {{ grains.get('c3p0_connection_debug', false) }}
+
+server.susemanager.auto_generate_bootstrap_repo = {{ 1 if grains.get('auto_bootstrap') else 0 }}
