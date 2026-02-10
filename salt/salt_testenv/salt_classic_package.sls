@@ -126,14 +126,14 @@ salt_testsuite_installed:
       - pkg.install
       - pkgs: {{ to_install }}
       - fromrepo: [salt_testing_repo, salt_testsuite_dependencies_repo]
-      - requires:
+      - require:
         - pkgrepo: salt_testing_repo
         - pkgrepo: salt_testsuite_dependencies_repo
 -#}
 salt_testsuite_installed:
   cmd.run:
     - name: transactional-update --continue --non-interactive --drop-if-no-change pkg install --from salt_testing_repo --from salt_testsuite_dependencies_repo {{ to_install|join(" ")}}
-    - requires:
+    - require:
         - pkgrepo: salt_testing_repo
         - pkgrepo: salt_testsuite_dependencies_rep
 {% else -%}
@@ -152,7 +152,7 @@ salt_testsuite_installed:
     - require:
       - pkgrepo: salt_testing_repo
       - pkgrepo: salt_testsuite_dependencies_repo
-{% endif -%}  
+{% endif -%}
 
 ## Services for running tests
 
@@ -164,7 +164,7 @@ docker_service_enabled:
   service.running:
     - name: docker
 {% endif %}
-    - requires:
+    - require:
       - pkg: salt_testsuite_installed
 
 {% if grains['osfullname'] == 'SLES' and '15.3' == grains['osrelease'] %}

@@ -55,7 +55,7 @@ avahi_pkg:
       - libavahi-core7
       {% endif %}
       {% endif %}
-    - requires:
+    - require:
       - pkgrepo: os_pool_repo
 {% endif %}
 
