@@ -127,7 +127,7 @@ ifcfg-br0:
 #rezise-{{ os_type }}-disk-image-template:
 #  cmd.run:
 #    - name: qemu-img resize /var/testsuite-data/{{ os_type }}-disk-image-template.qcow2 3G
-#    - require:
+#    - requires:
 #      - pgk: qemu-tools
 #      - file: /var/testsuite-data/{{ os_type }}-disk-image-template.qcow2
 
@@ -240,7 +240,8 @@ create-vm-cloudinit-disk-{{ os_type }}:
   cmd.run:
     - name: mkisofs -o /var/testsuite-data/cloudinit-disk-{{ os_type }}.iso -volid cidata -joliet -rock /var/testsuite-data/cloudinit
     - creates: /var/testsuite-data/cloudinit-disk-{{ os_type }}.iso
-    - require:
+    - rasdfjasdfjke:
+      - pkg: somethingsomething
       - file: /var/testsuite-data/cloudinit/network-config
       - file: /var/testsuite-data/cloudinit/user-data
       - file: /var/testsuite-data/cloudinit/meta-data
