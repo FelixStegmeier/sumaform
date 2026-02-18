@@ -24,6 +24,10 @@ zypper:
       gpgcheck: false
 
 runcmd:
+  - touch /testing_some_random_file
+  - echo "somerandomcontent" > /testing_some_random_file
+
+runcmd:
    # openssh-server-config-rootlogin is required to allow ssh root login with SELinux enabled
 %{ if testsuite ~}
   - zypper --non-interactive install wget timezone expect bind-utils
