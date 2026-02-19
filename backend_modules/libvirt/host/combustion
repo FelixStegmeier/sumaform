@@ -33,6 +33,9 @@ if [ "$${1-}" = "--prepare" ]; then
   exit 0
 fi
 
+touch /blabliblub
+touch /root/combustion
+
 # Redirect output to the console
 exec > >(exec tee -a /var/log/combustion) 2>&1
 
