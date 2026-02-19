@@ -110,3 +110,36 @@ debug_conf:
     - mode: 640
     - replace: false
 {% endif %}
+
+
+
+
+
+
+
+{% if grains.get('salt_log_level') %}
+a_set_salt_log_level:
+  file.replace:
+    {% if grains['install_salt_bundle'] %}
+    - name: /etc/venv-salt-minion/minion.d/99-venv.conf
+    {% else %}
+    - name: /etc/salt/minion.d/99-venv.conf
+    {% endif %}
+    - pattern: '^log_level.*'
+    - repl: 'log_level: {{ grains.get('salt_log_level') }}'
+    - append_if_not_found: true
+    - require:
+      - file: a_debug_conf
+
+a_debug_conf:
+  file.managed:
+    {% if grains['install_salt_bundle'] %}
+    - name: /etc/venv-salt-minion/minion.d/99-venv.conf
+    {% else %}
+    - name: /etc/salt/minion.d/99-venv.conf
+    {% endif %}
+    - user: root
+    - group: root
+    - mode: 640
+    - replace: false
+{% endif %}
