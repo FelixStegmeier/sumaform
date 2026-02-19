@@ -1,0 +1,11 @@
+{% set domain = 'mgr.suse.de' %}
+{% set prefix = 'apprentice' %}
+
+asdf:
+  hosts:
+    suse-minion:
+      ansible_host: {{ prefix }}-suse-minion.{{ domain }}
+      ansible_user: root
+    server_containerized:
+      ansible_host: {{ prefix }}-server_containerized.{{ domain }}
+      ansible_user: root
