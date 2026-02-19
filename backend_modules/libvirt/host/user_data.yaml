@@ -7,6 +7,23 @@ chpasswd:
   list: |
      root:linux
 
+
+runcmd:
+  - touch /testing_runcmd
+
+runcmd:
+  - touch /root/testing_runcmd
+
+
+bootcmd:
+  - touch /root/testing_bootcmd
+
+write_files:
+  - path: /root/file.txt
+    content: "some_content"
+    permissions: '0644'
+
+
 %{ if image == "tumbleweedo" ~}
 zypper:
   repos:
@@ -22,10 +39,6 @@ zypper:
       enabled: 1
       autorefresh: 1
       gpgcheck: false
-
-runcmd:
-  - touch /testing_some_random_file
-  - echo "somerandomcontent" > /testing_some_random_file
 
 runcmd:
    # openssh-server-config-rootlogin is required to allow ssh root login with SELinux enabled
