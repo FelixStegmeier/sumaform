@@ -148,3 +148,7 @@ EOT
     ]
   }
 }
+
+output "salt-ssh_data" {
+  value = module.dhcp_dns.salt-ssh_data
+}

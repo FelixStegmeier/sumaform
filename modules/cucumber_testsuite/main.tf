@@ -548,3 +548,8 @@ output "configuration" {
     controller = module.controller.configuration
   }
 }
+
+
+output "salt-ssh_data" {
+  value = module.cucumber_testsuite.salt-ssh_data
+}

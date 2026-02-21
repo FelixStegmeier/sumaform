@@ -36,3 +36,6 @@ output "configuration" {
   value = module.sshminion.configuration
 }
 
+output "salt-ssh_data" {
+  value = module.sshminion.salt-ssh_data
+}

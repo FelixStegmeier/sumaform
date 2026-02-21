@@ -308,23 +308,23 @@ resource "terraform_data" "provisioning" {
     destination = "/tmp/grains"
   }
 
-  provisioner "remote-exec" {
-    inline = [
-      "bash /root/salt/wait_for_salt.sh",
-    ]
-  }
+  # provisioner "remote-exec" {
+  #   inline = [
+  #     "bash /root/salt/wait_for_salt.sh",
+  #   ]
+  # }
 
-  provisioner "remote-exec" {
-    inline = [
-      "bash /root/salt/first_deployment_highstate.sh",
-    ]
-  }
+  # provisioner "remote-exec" {
+  #   inline = [
+  #     "bash /root/salt/first_deployment_highstate.sh",
+  #   ]
+  # }
 
-  provisioner "remote-exec" {
-    inline = [
-      "bash /root/salt/post_provisioning_cleanup.sh",
-    ]
-  }
+  # provisioner "remote-exec" {
+  #   inline = [
+  #     "bash /root/salt/post_provisioning_cleanup.sh",
+  #   ]
+  # }
 }
 
 output "configuration" {
@@ -335,5 +335,13 @@ output "configuration" {
     macaddrs  = [for value_used in libvirt_domain.domain : value_used.network_interface[0].mac if length(value_used.network_interface) > 0]
     private_macs = [for value_used in libvirt_domain.domain : value_used.network_interface[1].mac if length(value_used.network_interface) > 1]
     ipaddrs  = [for value_used in libvirt_domain.domain : value_used.network_interface[0].addresses if length(value_used.network_interface) > 0]
+  }
+}
+
+output "salt-ssh_data" {
+  value = {
+    grains = var.grains
+    hostnames = [for value_used in libvirt_domain.domain : local.overwrite_fqdn != "" ? local.overwrite_fqdn : "${value_used.name}.${var.base_configuration["domain"]}"]
+    ipaddrs = [for value_used in libvirt_domain.domain : value_used.network_interface[0].addresses if length(value_used.network_interface) > 0]
   }
 }

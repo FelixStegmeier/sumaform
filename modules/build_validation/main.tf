@@ -1403,3 +1403,7 @@ output "configuration" {
     server_configuration = local.server_configuration
   }
 }
+
+output "salt-ssh_data" {
+  value = module.build_validation.salt-ssh_data
+}

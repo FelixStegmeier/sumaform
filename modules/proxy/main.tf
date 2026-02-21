@@ -74,3 +74,7 @@ output "configuration" {
     password        = var.server_configuration["password"]
   }
 }
+
+output "salt-ssh_data" {
+  value = module.proxy.salt-ssh_data
+}

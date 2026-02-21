@@ -24,3 +24,7 @@ output "configuration" {
     image        = var.image
   }
 }
+
+output "salt-ssh_data" {
+  value = module.pxe_boot.salt-ssh_data
+}

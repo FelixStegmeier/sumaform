@@ -33,3 +33,7 @@ module "virthost" {
 output "configuration" {
   value = module.virthost.configuration
 }
+
+output "salt-ssh_data" {
+  value = module.virthost.salt-ssh_data
+}

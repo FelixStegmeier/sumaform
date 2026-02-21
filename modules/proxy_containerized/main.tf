@@ -76,3 +76,7 @@ output "configuration" {
     auto_configure       = var.auto_configure
   }
 }
+
+output "salt-ssh_data" {
+  value = module.proxy_containerized.salt-ssh_data
+}

@@ -97,3 +97,7 @@ output "configuration" {
     first_user_present = true
   }
 }
+
+output "salt-ssh_data" {
+  value = module.server_containerized.salt-ssh_data
+}

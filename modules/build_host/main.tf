@@ -37,3 +37,9 @@ module "build_host" {
 output "configuration" {
   value = module.build_host.configuration
 }
+
+
+output "salt-ssh_data" {
+  value = module.build_host.salt-ssh_data
+}
+

@@ -37,3 +37,6 @@ output "configuration" {
   value = module.client.configuration
 }
 
+output "salt-ssh_data" {
+  value = module.client.salt-ssh_data
+}

@@ -21,3 +21,7 @@ output "configuration" {
   value = module.grafana.configuration
 }
 
+
+output "salt-ssh_data" {
+  value = module.grafana.salt-ssh_data
+}

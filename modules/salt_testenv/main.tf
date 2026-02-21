@@ -24,3 +24,7 @@ module "salt_testenv" {
 output "configuration" {
   value = module.salt_testenv.configuration
 }
+
+output "salt-ssh_data" {
+  value = module.salt_testenv.salt-ssh_data
+}

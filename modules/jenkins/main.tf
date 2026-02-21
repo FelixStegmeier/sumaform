@@ -27,3 +27,7 @@ module "jenkins" {
 output "configuration" {
   value = module.jenkins.configuration
 }
+
+output "salt-ssh_data" {
+  value = module.jenkins.salt-ssh_data
+}

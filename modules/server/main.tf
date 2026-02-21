@@ -114,3 +114,7 @@ output "configuration" {
     product_version    = local.product_version
   }
 }
+
+output "salt-ssh_data" {
+  value = module.server.salt-ssh_data
+}

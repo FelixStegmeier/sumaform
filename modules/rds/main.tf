@@ -27,3 +27,7 @@ output "configuration" {
     local              = false
   }
 }
+
+output "salt-ssh_data" {
+  value = module.rds.salt-ssh_data
+}

@@ -30,3 +30,7 @@ output "configuration" {
     hostname        = length(module.registry.configuration["hostnames"]) > 0 ? module.registry.configuration["hostnames"][0] : null
   }
 }
+
+output "salt-ssh_data" {
+  value = module.registry.salt-ssh_data
+}

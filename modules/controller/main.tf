@@ -166,3 +166,7 @@ output "configuration" {
     branch   = var.branch == "default" ? var.testsuite-branch[var.server_configuration["product_version"]] : var.branch
   }
 }
+
+output "salt-ssh_data" {
+  value = module.controller.salt-ssh_data
+}

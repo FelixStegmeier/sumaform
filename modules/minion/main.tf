@@ -42,3 +42,7 @@ module "minion" {
 output "configuration" {
   value = module.minion.configuration
 }
+
+output "salt-ssh_data" {
+  value = module.minion.salt-ssh_data
+}

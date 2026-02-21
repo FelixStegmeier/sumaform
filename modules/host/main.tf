@@ -34,3 +34,7 @@ module "host" {
 output "configuration" {
   value = merge( { private_macs = [] }, module.host.configuration)
 }
+
+output "salt-ssh_data" {
+  value = module.host.salt-ssh_data
+}

@@ -1,4 +1,3 @@
-
 locals {
   images_used = var.use_shared_resources ? [] : var.images
   image_urls = {

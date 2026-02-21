@@ -44,3 +44,7 @@ output "configuration" {
     hostname = length(module.locust.configuration["hostnames"]) > 0 ? module.locust.configuration["hostnames"][0] : null
   }
 }
+
+output "salt-ssh_data" {
+  value = module.locust.salt-ssh_data
+}

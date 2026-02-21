@@ -34,3 +34,8 @@ module "mirror" {
 output "configuration" {
   value = module.mirror.configuration
 }
+
+
+output "salt-ssh_data" {
+  value = module.mirror.salt-ssh_data
+}
